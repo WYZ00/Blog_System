@@ -1,5 +1,8 @@
-import firebase from "firebase/app"
-import "firebase/firestore"
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection,doc, getDocs } from 'firebase/firestore/lite';
+// for version 8
+// import firebase from "firebase/app"
+// import "firebase/firestore"
 
 const firebaseConfig = {
     apiKey: "AIzaSyAoy53xbj0Krw1H2De1nveIROo-EmkxztE",
@@ -10,10 +13,16 @@ const firebaseConfig = {
     appId: "1:838839779911:web:822d1aae9b5b8f820fa762"
 };
 
-//   init firebase
-firebase.initializeApp(firebaseConfig);
+//   init firebase version 8
+// firebase.initializeApp(firebaseConfig)
 
-// database setup
-let db = firebase.firestore()
+// database setup version 8
+// const db = firebase.firestore();
+
+//   init firebase version 9
+const app = initializeApp(firebaseConfig);
+
+// database setup version 9
+const db = getFirestore(app);
 
 export {db};
