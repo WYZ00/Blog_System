@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection,doc, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection,doc, getDocs,FieldValue } from 'firebase/firestore/lite';
+
 // for version 8
 // import firebase from "firebase/app"
 // import "firebase/firestore"
@@ -24,5 +25,7 @@ const app = initializeApp(firebaseConfig);
 
 // database setup version 9
 const db = getFirestore(app);
+
+const timestamp = getFirestore.Fiel
 
 export {db};

@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import { db } from "@/firebase/config";
-import { collection, getDocs } from "firebase/firestore/lite";
+import { collection, getDocs, query , orderBy } from "firebase/firestore/lite";
+
 
 
 let getPosts = ()=>{
@@ -31,7 +32,7 @@ let getPosts = ()=>{
 
 
         // firebase collection fetch (version 9)
-        let colResponse = collection(db,'posts');
+        let colResponse = query(collection(db,'posts'),orderBy('created_at','desc'));
         // console.log(colResponse);
         let documents  = await getDocs(colResponse);
           posts.value = documents.docs.map((doc)=>{

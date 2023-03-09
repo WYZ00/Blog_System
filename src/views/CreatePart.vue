@@ -21,7 +21,7 @@
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { addDoc, collection } from 'firebase/firestore/lite';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore/lite';
 import { db } from '@/firebase/config';
 export default {
     setup(){
@@ -61,7 +61,8 @@ export default {
         let newpost = {
             title:title.value,
             body:body.value,
-            tags:tags.value
+            tags:tags.value,
+            created_at:serverTimestamp()
         }
 
         // firebase 8
