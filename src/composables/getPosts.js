@@ -25,7 +25,7 @@ let getPosts = ()=>{
         // posts.value = datas;
 
         // firebase collection fetch (version 8)
-        // let res = await db.collection('posts').get();
+        // let res = await db.collection('posts').orderBy('created_at','desc').get();
         // posts.value = res.docs.map(doc=>{
         //return {id:doc.id,...doc.data()}
         //});
