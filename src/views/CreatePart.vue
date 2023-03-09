@@ -21,6 +21,8 @@
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { addDoc, collection } from 'firebase/firestore/lite';
+import { db } from '@/firebase/config';
 export default {
     setup(){
         let router = useRouter();
@@ -37,19 +39,37 @@ export default {
         }
 
         let addPost=async()=>{
-           await fetch("http://localhost:3000/posts",{
-            method:"POST",
-            headers:{
-                "Content-type":"application/json"
-            },
-            body:JSON.stringify(
-                {
-                    title:title.value,
-                    body:body.value,
-                    tags:tags.value
-                }
-            )
-           });
+
+            // json server
+        //    await fetch("http://localhost:3000/posts",{
+        //     method:"POST",
+        //     headers:{
+        //         "Content-type":"application/json"
+        //     },
+        //     body:JSON.stringify(
+        //         {
+        //             title:title.value,
+        //             body:body.value,
+        //             tags:tags.value
+        //         }
+        //     )
+        //    });
+
+        
+
+        
+        let newpost = {
+            title:title.value,
+            body:body.value,
+            tags:tags.value
+        }
+
+        // firebase 8
+        //await db.collection('posts').add(newpost)
+        
+        // firebase 9
+        let res = await addDoc(collection(db,'posts'),newpost);
+        // console.log(res);
 
             // redirect user to home page
             router.push('/');
